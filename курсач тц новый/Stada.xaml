@@ -1,0 +1,56 @@
+﻿<Window x:Class="курсач_тц_новый.Stada"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:курсач_тц_новый"
+        mc:Ignorable="d"
+        Title="Stada" Height="450" Width="750">
+
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView Height="350" Width="590" HorizontalAlignment="Left" Margin="10" Background="AliceBlue" Grid.Row="1"
+                  ItemsSource="{Binding tbl_stat}" SelectedItem="{Binding SelectedStat}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding stati.StatCardId}"
+                                    Header="Дата" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding SelectedStat.StatProf}" 
+                                    Header="Прибыль" Width="120"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding SelectedStat.StatLoss}" 
+                                    Header="Убытки" Width="120"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding SelectedStat.StatVis}" 
+                                    Header="Посещения" Width="120"/>
+                    
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" DataContext="{Binding SelectedStat}">
+            
+            <TextBlock Text="Дата"/>
+            <TextBox Text="{Binding Path=StatData}" />
+            <TextBlock Text="Прибыль"/>
+            <TextBox Text="{Binding Path=StatProf}" />
+            <TextBlock Text="Убытки"/>
+            <TextBox Text="{Binding Path=StatLoss}" />
+            <TextBlock Text="Посещения"/>
+            <TextBox Text="{Binding Path=StatVis}" />
+           
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" >
+            <TextBlock  Text="{Binding SelectedPavilion.PavName}" HorizontalAlignment="Center" />
+            <TextBlock  Text="{Binding SelectedPavilion.PavTitle}" HorizontalAlignment="Center" />
+        </StackPanel>
+    </Grid> 
+</Window>
