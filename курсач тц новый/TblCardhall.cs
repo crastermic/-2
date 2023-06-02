@@ -13,9 +13,11 @@ public partial class TblCardhall
 
     public int? CardRoom { get; set; }
 
-    public virtual TblHall? CardHallNavigation { get; set; } = null!;
+    public int? CardStat { get; set; }
 
-    public virtual TblPavilion? CardPavNavigation { get; set; } = null!;
+    public virtual TblHall? CardHallNavigation { get; set; }
 
-    public virtual TblRoom? CardRoomNavigation { get; set; } = null!;
+    public virtual TblPavilion? CardPavNavigation { get; set; }
+
+    public virtual TblRoom? CardRoomNavigation { get; set; }
 }

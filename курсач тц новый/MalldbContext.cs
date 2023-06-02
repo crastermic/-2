@@ -23,9 +23,11 @@ public partial class MalldbContext : DbContext
 
     public virtual DbSet<TblRoom> TblRooms { get; set; }
 
+    public virtual DbSet<TblStat> TblStats { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;user=root;password=student;database=malldb", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
+        => optionsBuilder.UseMySql("host=localhost;user=root;password=student;database=malldb", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,6 +46,8 @@ public partial class MalldbContext : DbContext
             entity.HasIndex(e => e.CardPav, "FK_tbl_cardhall_tbl_pavilion_Idpav");
 
             entity.HasIndex(e => e.CardRoom, "FK_tbl_cardhall_tbl_rooms_IdRoom");
+
+            entity.HasIndex(e => e.CardStat, "FK_tbl_cardhall_tbl_stat_IdStat");
 
             entity.HasOne(d => d.CardHallNavigation).WithMany(p => p.TblCardhalls)
                 .HasForeignKey(d => d.CardHall)
@@ -64,8 +68,6 @@ public partial class MalldbContext : DbContext
 
             entity.ToTable("tbl_hall");
 
-
-            entity.Property(e => e.IdHall).ValueGeneratedNever();
             entity.Property(e => e.HallSide).HasMaxLength(255);
         });
 
@@ -75,13 +77,13 @@ public partial class MalldbContext : DbContext
 
             entity.ToTable("tbl_pavilion");
 
+            entity.HasIndex(e => e.PavStatistic, "FK_tbl_pavilion_tbl_graf_IdGraf");
+
             entity.Property(e => e.PavAdre).HasMaxLength(255);
-            entity.Property(e => e.PavLoss).HasPrecision(10);
             entity.Property(e => e.PavMail).HasMaxLength(255);
             entity.Property(e => e.PavMenag).HasMaxLength(255);
             entity.Property(e => e.PavName).HasMaxLength(255);
             entity.Property(e => e.PavOwner).HasMaxLength(255);
-            entity.Property(e => e.PavProfit).HasPrecision(10);
             entity.Property(e => e.PavTeleph).HasMaxLength(255);
             entity.Property(e => e.PavTitle).HasMaxLength(255);
         });
@@ -92,8 +94,18 @@ public partial class MalldbContext : DbContext
 
             entity.ToTable("tbl_rooms");
 
-            entity.Property(e => e.IdRoom).ValueGeneratedNever();
             entity.Property(e => e.RoomName).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<TblStat>(entity =>
+        {
+            entity.HasKey(e => e.IdStat).HasName("PRIMARY");
+
+            entity.ToTable("tbl_stat");
+
+            entity.HasIndex(e => e.StatCardId, "FK_tbl_stat_tbl_cardhall_CardStat");
+
+            entity.Property(e => e.StatCardId).HasColumnName("StatCardID");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -33,10 +33,11 @@ namespace курсач_тц_новый
         public event PropertyChangedEventHandler? PropertyChanged;
         void Signal(string prop) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         public TblPavilion SelectedPavilion { get; set; }
-
+        public TblStat SelectedStat { get; set; }
         public TblCardhall SelectedCardhall { get; set; }
 
         public List<TblHall> Halls { get; set; }
+        public List<TblStat> TblStats { get; set; }
         public List<TblCardhall> Cardhalls { get; set; }
         public List<TblPavilion> Pavilions { get; set; }
         public List<string> Sorting { get; set; } = new List<string>() { "Без сортировки", "Сначала новые записи", "Сначала старые записи" };
@@ -46,7 +47,7 @@ namespace курсач_тц_новый
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
+            
             Halls = DB.GetInstance().TblHalls.ToList();
             Ivan.ItemsSource = Halls;
             var result =  DB.GetInstance().TblCardhalls.
@@ -55,6 +56,10 @@ namespace курсач_тц_новый
                 Include(s => s.CardRoomNavigation);
             Cardhalls = result.ToList();
             Signal(nameof(Cardhalls));
+
+            
+            DataContext = this;
+           
         }
 
         public int SelectedSorting
@@ -89,8 +94,8 @@ namespace курсач_тц_новый
         {
             if (SelectedCardhall !=null)
             {
-                Statistic statistic = new Statistic(SelectedCardhall.CardPavNavigation);
-                            statistic.Show();
+                Stada stada = new Stada(SelectedStat,SelectedCardhall.CardPavNavigation);
+                stada.Show();
             }
             else
             {

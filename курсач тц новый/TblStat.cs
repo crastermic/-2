@@ -11,11 +11,7 @@ public partial class TblStat
 
     public int? StatLoss { get; set; }
 
-    public int? StatVis { get; set; }
-
     public DateOnly? StatData { get; set; }
 
     public int? StatCardId { get; set; }
-
-    public virtual ICollection<TblCardhall> TblCardhalls { get; set; } = new List<TblCardhall>();
 }

@@ -70,23 +70,6 @@ namespace курсач_тц_новый
         void Signal(string prop) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         public void Search()
         {
-            var result = DB.GetInstance().TblCardhalls.
-                Include(s => s.CardPavNavigation).
-                Include(s => s.CardHallNavigation).
-                Include(s => s.CardRoomNavigation).Where(s =>
-                    s.CardPavNavigation.PavTitle.Contains(searchText) ||
-                    s.CardPavNavigation.PavName.Contains(searchText) ||
-                    s.CardPavNavigation.PavOwner.Contains(searchText) ||
-                    s.CardHallNavigation.HallSide.Contains(searchText) ||
-                    s.CardRoomNavigation.RoomName.Contains(searchText)
-                );
-            if (SelectedHall != null && SelectedHall.IdHall != 0)
-                result = result.Where(s => s.CardHall == SelectedHall.IdHall);
-            if (selectedSorting == 1)
-                result = result.OrderByDescending(s => s.CardPav);
-            else if (selectedSorting == 2)
-                result = result.OrderBy(s => s.CardPav);
-            Cardhalls = result.ToList();
             Signal(nameof(Cardhalls));
         }
 

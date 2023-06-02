@@ -10,5 +10,4 @@ public partial class TblRoom
     public string? RoomName { get; set; }
 
     public virtual ICollection<TblCardhall> TblCardhalls { get; set; } = new List<TblCardhall>();
-
 }

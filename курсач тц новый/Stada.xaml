@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:курсач_тц_новый"
         mc:Ignorable="d"
-        Title="Stada" Height="450" Width="750">
+        Title="Stada" Height="450" Width="750"
+        WindowStartupLocation="CenterScreen" FontSize="18">
 
-    
     <Grid>
+            
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
@@ -18,23 +19,33 @@
             <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
         
-        <ListView Height="350" Width="590" HorizontalAlignment="Left" Margin="10" Background="AliceBlue" Grid.Row="1"
-                  ItemsSource="{Binding tbl_stat}" SelectedItem="{Binding SelectedStat}" >
+        <Frame Name="mainframe"/>
+
+        <ListView  x:Name="Jop" Height="350" Width="590" HorizontalAlignment="Left" Margin="10" Background="AliceBlue" Grid.Row="1" 
+                     SelectedItem="{Binding SelectedStat}" >
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить" Click="Sadd"/>
+                    <MenuItem Header="Редактировать" Click="Srem"/>
+                    <MenuItem Header="Удалить" Click="Sdel"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding stati.StatCardId}"
+                <GridView >
+                    <GridViewColumn DisplayMemberBinding="{Binding StatData}"
                                     Header="Дата" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding SelectedStat.StatProf}" 
+                    <GridViewColumn DisplayMemberBinding="{Binding StatProf}" 
                                     Header="Прибыль" Width="120"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding SelectedStat.StatLoss}" 
+                    <GridViewColumn DisplayMemberBinding="{Binding StatLoss}" 
                                     Header="Убытки" Width="120"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding SelectedStat.StatVis}" 
-                                    Header="Посещения" Width="120"/>
                     
                 </GridView>
+                
             </ListView.View>
+            
         </ListView>
 
+        
         <StackPanel Grid.Row="1" Grid.Column="1" DataContext="{Binding SelectedStat}">
             
             <TextBlock Text="Дата"/>
@@ -52,5 +63,6 @@
             <TextBlock  Text="{Binding SelectedPavilion.PavName}" HorizontalAlignment="Center" />
             <TextBlock  Text="{Binding SelectedPavilion.PavTitle}" HorizontalAlignment="Center" />
         </StackPanel>
-    </Grid> 
+    </Grid>
+    
 </Window>

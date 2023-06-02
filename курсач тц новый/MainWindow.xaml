@@ -30,7 +30,8 @@
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedCardhall}" ItemsSource="{Binding Cardhalls}" ItemTemplate="{StaticResource pavilionView}" />
+        <ListBox HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedCardhall}" 
+                 ItemsSource="{Binding Cardhalls}" ItemTemplate="{StaticResource pavilionView}" />
         <StackPanel Grid.Column="2" Background="#F1F6F9">
             <Label Content="Поиск"/>
             <TextBox Text="{Binding SearchText,

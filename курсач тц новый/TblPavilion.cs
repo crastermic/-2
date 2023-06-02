@@ -13,12 +13,6 @@ public partial class TblPavilion
 
     public string? PavMenag { get; set; }
 
-    public decimal? PavProfit { get; set; }
-
-    public decimal? PavLoss { get; set; }
-
-    public int? PavVisits { get; set; }
-
     public string? PavTeleph { get; set; }
 
     public string? PavMail { get; set; }
@@ -26,6 +20,8 @@ public partial class TblPavilion
     public string? PavAdre { get; set; }
 
     public string? PavTitle { get; set; }
+
+    public int? PavStatistic { get; set; }
 
     public virtual ICollection<TblCardhall> TblCardhalls { get; set; } = new List<TblCardhall>();
 }
