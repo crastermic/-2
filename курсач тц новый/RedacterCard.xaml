@@ -26,15 +26,7 @@
             
             <TextBlock Text="Менеджер"/>
             <TextBox Text="{Binding SelectedCardhall.CardPavNavigation.PavMenag}" />
-            
-            <TextBlock Text="Доход"/>
-            <TextBox Text="{Binding SelectedCardhall.CardPavNavigation.PavProfit}" />
-            
-            <TextBlock Text="Убытки"/>
-            <TextBox Text="{Binding SelectedCardhall.CardPavNavigation.PavLoss}" />
-            
-            <TextBlock Text="Посещения в месяц"/>
-            <TextBox Text="{Binding SelectedCardhall.CardPavNavigation.PavVisits}" />
+           
         </StackPanel>
         
         <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
