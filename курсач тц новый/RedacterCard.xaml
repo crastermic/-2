@@ -15,7 +15,8 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0">
 
             <TextBlock Text="Отдел"/>
-            <TextBox Text="{Binding SelectedCardhall.CardPavNavigation.PavName}" TextChanged="TextBox_TextChanged" />
+            <TextBox Text="{Binding SelectedCardhall.CardPavNavigation.PavName}" 
+                     TextChanged="TextBox_TextChanged" />
 
             <TextBlock Text="Название или имя организации"/>
             <TextBox Text="{Binding SelectedCardhall.CardPavNavigation.PavTitle}" TextChanged="TextBox_TextChanged" />

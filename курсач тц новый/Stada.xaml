@@ -5,24 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:курсач_тц_новый"
         mc:Ignorable="d"
-        Title="Stada" Height="450" Width="750"
+        Title="Stada" Height="470" Width="750"
         WindowStartupLocation="CenterScreen" FontSize="18">
 
     <Grid>
-            
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="80"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        
-        <Frame Name="mainframe"/>
 
-        <ListView  x:Name="Jop" Height="350" Width="590" HorizontalAlignment="Left" Margin="10" Background="AliceBlue" Grid.Row="1" 
-                     SelectedItem="{Binding SelectedStat}" >
+        <ListView  x:Name="Jop" ItemsSource="{Binding TblStats}" Height="350" Width="590" HorizontalAlignment="Center" 
+                    Background="AliceBlue" Grid.Row="1" 
+                    SelectedItem="{Binding SelectedStatistic}" Grid.Column="0" >
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Добавить" Click="Sadd"/>
@@ -38,31 +36,14 @@
                                     Header="Прибыль" Width="120"/>
                     <GridViewColumn DisplayMemberBinding="{Binding StatLoss}" 
                                     Header="Убытки" Width="120"/>
-                    
                 </GridView>
-                
             </ListView.View>
-            
         </ListView>
 
-        
-        <StackPanel Grid.Row="1" Grid.Column="1" DataContext="{Binding SelectedStat}">
-            
-            <TextBlock Text="Дата"/>
-            <TextBox Text="{Binding Path=StatData}" />
-            <TextBlock Text="Прибыль"/>
-            <TextBox Text="{Binding Path=StatProf}" />
-            <TextBlock Text="Убытки"/>
-            <TextBox Text="{Binding Path=StatLoss}" />
-            <TextBlock Text="Посещения"/>
-            <TextBox Text="{Binding Path=StatVis}" />
-           
-        </StackPanel>
-
-        <StackPanel Grid.Row="0" >
-            <TextBlock  Text="{Binding SelectedPavilion.PavName}" HorizontalAlignment="Center" />
-            <TextBlock  Text="{Binding SelectedPavilion.PavTitle}" HorizontalAlignment="Center" />
+        <StackPanel Grid.Row="0" Background="#F1F6F9" Grid.ColumnSpan="2">
+            <TextBlock  Text="{Binding SelectedPavilion.PavName}" HorizontalAlignment="Center" Margin="5"/>
+            <TextBlock  Text="{Binding SelectedPavilion.PavTitle}" HorizontalAlignment="Center" Margin="5" />
         </StackPanel>
     </Grid>
-    
+
 </Window>
